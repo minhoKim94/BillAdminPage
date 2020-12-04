@@ -1,0 +1,126 @@
+﻿@{
+    ViewBag.Title = "LoginFailLstFrm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .gridTable {
+        margin: 5px;
+        padding: 10px;
+        border: 1px #c8c8c8 solid;
+        border-collapse: collapse;
+        min-width: 550px;
+        background-color: #fff;
+        color: #fff;
+        width: 100%;
+    }
+
+    .gridHead th {
+        font-weight: bold;
+        background-color: #3498DB;
+        color: #fff;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .gridHead a:link, .gridHead a:visited, .gridHead a:active, .gridHead a:hover {
+        color: #fff;
+    }
+
+    .gridHead a:hover {
+        text-decoration: underline;
+    }
+
+    .gridTable tr.gridAltRow {
+        background-color: #efeeef;
+    }
+
+    .gridTable tr:hover {
+        background-color: #f6f70a;
+    }
+
+    .gridAltRow td {
+        padding: 10px;
+        margin: 5px;
+        color: #333;
+        text-align: left;
+    }
+
+    .gridRow td {
+        padding: 10px;
+        color: #333;
+        text-align: left;
+    }
+
+    .gridFooter td {
+        padding: 10px;
+        color: #ffffff;
+        font-size: 12pt;
+        text-align: center;
+        background-color: #3498DB;
+    }
+
+    .gridFooter a {
+        font-weight: bold;
+        color: blue;
+        cursor: pointer;
+    }
+
+    .dataTables_length {
+        width: auto;
+    }
+</style>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">관리자/로그인 -> 관리자</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length">
+                            @using (Html.BeginForm("LoginFailLstFrm", "Admin", FormMethod.Post))
+                            {
+                                <span>관리자 아이디 :</span> @Html.TextBox("strAdminID")
+                                <input type="submit" value="Search" />
+                            }
+                            <label> </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="dataTable_filter" class="dataTables_filter">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        @{
+                            var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 10, ajaxUpdateContainerId: "gridContent");
+
+                            @grid.GetHtml(
+                            mode: WebGridPagerModes.All,
+                            tableStyle: "gridTable",
+                            headerStyle: "gridHead",
+                            footerStyle: "gridFooter",
+                            rowStyle: "gridRow",
+                            alternatingRowStyle: "gridAltRow",
+                            htmlAttributes: new { id = "positionGrid" },
+                            fillEmptyRows: false,
+                            columns: grid.Columns(
+                                grid.Column("TryYMD", header: "TryYMD"),
+                                grid.Column("AdminID", header: "AdminID"),
+                                grid.Column("TryCnt", header: "TryCnt"),
+                                grid.Column("ResetCnt", header: "ResetCnt"),
+                                grid.Column("HAdminID", header: "HAdminID"),
+                                grid.Column("RegDate", header: "RegDate"),
+                                grid.Column("UpdDate", header: "UpdDate")
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

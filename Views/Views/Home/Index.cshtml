@@ -1,0 +1,18 @@
+﻿@model BillAdmin.Models.TAdminMgmt
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    if (@HttpContext.Current.User.Identity.Name.Equals(null))
+    {
+        Response.RedirectToRoute("LoginForm", "Account");
+    }
+}
+
+<h2>DashBoard</h2>
+
+
+
+로그인을 환영합니다 : <b>
+@HttpContext.Current.User.Identity.Name</b>

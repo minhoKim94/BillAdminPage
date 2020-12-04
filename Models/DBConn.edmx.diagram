@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="415395a58fa44ffdb7b8e57386205de7" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminLog" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminLoginFail" Width="1.5" PointX="4.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminLoginFailHist" Width="1.5" PointX="6.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminMenu" Width="1.5" PointX="4.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminMenuGroup" Width="1.5" PointX="6.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminMenuRole" Width="1.5" PointX="8.875" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminMenuRoleDtl" Width="1.5" PointX="8.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminMgmt" Width="1.5" PointX="10.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminPwdHist" Width="1.5" PointX="10.625" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminPwdReset" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminSession" Width="1.5" PointX="12.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MHKIM_BILL_DBModel.TAdminSessionHist" Width="1.5" PointX="12.625" PointY="4.875" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

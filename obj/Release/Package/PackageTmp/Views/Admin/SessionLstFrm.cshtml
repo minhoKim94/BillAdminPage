@@ -1,0 +1,73 @@
+﻿@model BillAdmin.Models.TAdminSession
+
+@{
+    ViewBag.Title = "SessionFrm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">관리자/로그인 -> 실시간 세션</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length">
+                            @using (Html.BeginForm("SessionLstFrm", "Admin", FormMethod.Post))
+                            {
+                                <span>관리자 아이디 :</span> @Html.TextBox("strAdminId")
+                                <span>&nbsp;&nbsp;</span>
+                                <span>IP 주소 :</span> @Html.TextBox("strIPAddr")
+                                <input type="submit" value="Search" />
+                            }
+
+                            <label> </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="dataTable_filter" class="dataTables_filter">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable text-center" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead style="background-color: #3498DB; color: white;">
+                                @{
+                                    <tr>
+                                        <th>SessionKey</th>
+                                        <th>AdminID</th>
+                                        <th>IPAddr</th>
+                                        <th>LoginDate</th>
+                                        <th>AccessDate</th>
+                                    </tr>
+                                }
+                            </thead>
+
+                            @using (Html.BeginForm())
+                            {
+                                foreach (System.Data.DataRow dr in ViewBag.sesionList.Rows)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td>@dr["SessionKey"]</td>
+                                            <td>@dr["AdminID"]</td>
+                                            <td>@dr["IPAddr"]</td>
+                                            <td>@dr["LoginDate"]</td>
+                                            <td>@dr["AccessDate"]</td>
+                                        </tr>
+                                    </tbody>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

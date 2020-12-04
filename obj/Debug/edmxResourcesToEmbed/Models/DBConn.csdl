@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MHKIM_BILL_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TAdminLog">
+    <Key>
+      <PropertyRef Name="SeqNo" />
+    </Key>
+    <Property Name="SeqNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuNo" Type="Int16" Nullable="false" />
+    <Property Name="MenuLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LogDesc" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LogYMD" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IPAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LogHash" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminLoginFail">
+    <Key>
+      <PropertyRef Name="TryYMD" />
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="TryYMD" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TryCnt" Type="Byte" Nullable="false" />
+    <Property Name="ResetCnt" Type="Byte" Nullable="false" />
+    <Property Name="HAdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminLoginFailHist">
+    <Key>
+      <PropertyRef Name="TryYMD" />
+      <PropertyRef Name="AdminID" />
+      <PropertyRef Name="TryCnt" />
+    </Key>
+    <Property Name="TryYMD" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TryCnt" Type="Byte" Nullable="false" />
+    <Property Name="IPAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ErrCode" Type="Int32" />
+    <Property Name="ErrMsg" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminMenu">
+    <Key>
+      <PropertyRef Name="MenuNo" />
+    </Key>
+    <Property Name="MenuNo" Type="Int16" Nullable="false" />
+    <Property Name="MenuGroupNo" Type="Int16" Nullable="false" />
+    <Property Name="MenuName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuENName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenuLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MenuSort" Type="Int16" Nullable="false" />
+    <Property Name="MenuDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="MenuENDesc" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="UseStateCode" Type="Byte" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminMenuGroup">
+    <Key>
+      <PropertyRef Name="MenuGroupNo" />
+    </Key>
+    <Property Name="MenuGroupNo" Type="Int16" Nullable="false" />
+    <Property Name="MenuGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuGroupENName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MenuGroupSort" Type="Int16" Nullable="false" />
+    <Property Name="MenuGroupIcon" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+    <Property Name="UseFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminMenuRole">
+    <Key>
+      <PropertyRef Name="MenuRoleNo" />
+    </Key>
+    <Property Name="MenuRoleNo" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuRoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UseFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminMenuRoleDtl">
+    <Key>
+      <PropertyRef Name="MenuRoleNo" />
+      <PropertyRef Name="MenuNo" />
+    </Key>
+    <Property Name="MenuRoleNo" Type="Int16" Nullable="false" />
+    <Property Name="MenuNo" Type="Int16" Nullable="false" />
+    <Property Name="AuthCode" Type="Byte" Nullable="false" />
+    <Property Name="CIReadingFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="DLAvailFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminMgmt">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AdminPwd" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AdminName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MenuRoleNo" Type="Int16" Nullable="false" />
+    <Property Name="Dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OfficePhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="MPhoneNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddr" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="UseLangTypeCode" Type="Byte" Nullable="false" />
+    <Property Name="AccessIPChkFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="AccessIP1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccessIP2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccessIP3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
+    <Property Name="LastLoginIP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PwdUpdDate" Type="DateTime" Precision="3" />
+    <Property Name="UseFlag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="HAdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminPwdHist">
+    <Key>
+      <PropertyRef Name="SeqNo" />
+    </Key>
+    <Property Name="SeqNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AdminPwd" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminPwdReset">
+    <Key>
+      <PropertyRef Name="Token" />
+    </Key>
+    <Property Name="Token" Type="Guid" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailAddr" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IPAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminSession">
+    <Key>
+      <PropertyRef Name="SessionKey" />
+    </Key>
+    <Property Name="SessionKey" Type="Guid" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IPAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccessDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TAdminSessionHist">
+    <Key>
+      <PropertyRef Name="SeqNo" />
+      <PropertyRef Name="SessionKey" />
+    </Key>
+    <Property Name="SeqNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SessionKey" Type="Guid" Nullable="false" />
+    <Property Name="AdminID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IPAddr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LoginDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AccessDate" Type="DateTime" Precision="3" />
+    <Property Name="LogOutDate" Type="DateTime" Precision="3" />
+    <Property Name="LogOutReason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="MHKIM_BILL_DBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TAdminLog" EntityType="Self.TAdminLog" />
+    <EntitySet Name="TAdminLoginFail" EntityType="Self.TAdminLoginFail" />
+    <EntitySet Name="TAdminLoginFailHist" EntityType="Self.TAdminLoginFailHist" />
+    <EntitySet Name="TAdminMenu" EntityType="Self.TAdminMenu" />
+    <EntitySet Name="TAdminMenuGroup" EntityType="Self.TAdminMenuGroup" />
+    <EntitySet Name="TAdminMenuRole" EntityType="Self.TAdminMenuRole" />
+    <EntitySet Name="TAdminMenuRoleDtl" EntityType="Self.TAdminMenuRoleDtl" />
+    <EntitySet Name="TAdminMgmt" EntityType="Self.TAdminMgmt" />
+    <EntitySet Name="TAdminPwdHist" EntityType="Self.TAdminPwdHist" />
+    <EntitySet Name="TAdminPwdReset" EntityType="Self.TAdminPwdReset" />
+    <EntitySet Name="TAdminSession" EntityType="Self.TAdminSession" />
+    <EntitySet Name="TAdminSessionHist" EntityType="Self.TAdminSessionHist" />
+    <FunctionImport Name="UP_ADMIN_INFO_GET_ID" ReturnType="Collection(String)">
+      <Parameter Name="AdminID" Mode="In" Type="String" />
+      <Parameter Name="AdminPwd" Mode="In" Type="String" />
+      <Parameter Name="IsValid" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="LoginModule" ReturnType="Collection(Int32)">
+      <Parameter Name="AdminID" Mode="In" Type="String" />
+      <Parameter Name="AdminPwd" Mode="In" Type="String" />
+      <Parameter Name="IsValid" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="GetAdminInfo" ReturnType="Collection(String)">
+      <Parameter Name="AdminID" Mode="In" Type="String" />
+      <Parameter Name="AdminPwd" Mode="In" Type="String" />
+      <Parameter Name="IsValid" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UP_LoginID" ReturnType="Collection(Int32)">
+      <Parameter Name="AdminID" Mode="In" Type="String" />
+      <Parameter Name="AdminPwd" Mode="In" Type="String" />
+      <Parameter Name="IsValid" Mode="InOut" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="UP_GET_SEARCH_ADMINUSER_LIST_INFO" ReturnType="Collection(MHKIM_BILL_DBModel.UP_GET_SEARCH_ADMINUSER_LIST_INFO_Result)">
+      <Parameter Name="pi_strAdminID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="UP_GET_SEARCH_ADMINUSER_LIST_INFO_Result">
+    <Property Type="String" Name="AdminID" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="AdminPwd" Nullable="false" MaxLength="64" />
+    <Property Type="String" Name="AdminName" Nullable="false" MaxLength="50" />
+    <Property Type="Int16" Name="MenuRoleNo" Nullable="false" />
+    <Property Type="String" Name="Dept" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Position" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="OfficePhoneNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="MPhoneNo" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="EmailAddr" Nullable="true" MaxLength="400" />
+    <Property Type="Byte" Name="UseLangTypeCode" Nullable="false" />
+    <Property Type="String" Name="AccessIPChkFlag" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="AccessIP1" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AccessIP2" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AccessIP3" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="LastLoginDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="LastLoginIP" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="PwdUpdDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UseFlag" Nullable="false" MaxLength="1" />
+    <Property Type="String" Name="HAdminID" Nullable="false" MaxLength="50" />
+    <Property Type="DateTime" Name="RegDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="UpdDate" Nullable="true" Precision="23" />
+  </ComplexType>
+</Schema>

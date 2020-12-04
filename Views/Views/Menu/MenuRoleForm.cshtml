@@ -1,0 +1,66 @@
+﻿@model BillAdmin.Models.TAdminMenuRole
+
+@{
+    ViewBag.Title = "MenuRoleForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">메뉴그룹</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length">
+                            <label>메뉴 역할 목록</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="dataTable_filter" class="dataTables_filter">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="width:auto">
+                        <table class="table table-bordered dataTable text-center" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead style="background-color: #3498DB; color: white;">
+                                @{
+                                    <tr>
+                                        <th>@Html.LabelFor(m => m.MenuRoleNo)</th>
+                                        <th>@Html.LabelFor(m => m.MenuRoleName)</th>
+                                        <th>@Html.LabelFor(m => m.UseFlag)</th>
+                                        <th>@Html.LabelFor(m => m.AdminID)</th>
+                                        <th>@Html.LabelFor(m => m.RegDate)</th>
+                                        <th>@Html.LabelFor(m => m.UpdDate)</th>
+                                    </tr>
+                                }
+                            </thead>
+
+                            <tbody>
+                                @using (Html.BeginForm())
+                                {
+
+                                    foreach (System.Data.DataRow dr in ViewBag.menuRolelst.Rows)
+                                    {
+                                        <tr>
+                                            <td>@dr["MenuRoleNo"]</td>
+                                            <td>@dr["MenuRoleName"]</td>
+                                            <td>@dr["UseFlag"]</td>
+                                            <td>@dr["AdminID"]</td>
+                                            <td>@dr["RegDate"]</td>
+                                            <td>@dr["UpdDate"]</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

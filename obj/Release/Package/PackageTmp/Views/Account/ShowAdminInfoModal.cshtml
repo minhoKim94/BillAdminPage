@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Admin detail Modal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<!-- 모달을 열기 위한 버튼 -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    관리자 정보 상세보기
+</button>
+<!-- 모달 영역 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog w-100" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        @{
+                            foreach (System.Data.DataRow dr in ViewBag.adminInfo.Rows)
+                            {
+                                <tr>
+                                    <th class="info">관리자 아이디</th>
+                                    <td class="text-muted">@dr["AdminID"]</td>
+                                    <th class="text-center info">관리자 명</th>
+                                    <td class="text-muted">@dr["AdminName"]</td>
+                                </tr>
+                                        <tr>
+                                            <th class="text-center info">부서</th>
+                                            <td class="text-muted">@dr["Dept"]</td>
+                                            <th class="text-center info">Job Title</th>
+                                            <td class="text-muted">@dr["Position"]</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center info">사무실 전화번호</th>
+                                            <td class="text-muted">@dr["OfficePhoneNo"]</td>
+                                            <th class="text-center info">휴대폰 번호</th>
+                                            <td class="text-muted">@dr["MPhoneNo"]</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center info">이메일 주소</th>
+                                            <td class="text-muted">@dr["EmailAddr"]</td>
+                                            <th class="text-center info"></th>
+                                            <td class="text-muted"></td>
+                                        </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">확인</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+            </div>
+        </div>
+    </div>
+</div>

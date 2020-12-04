@@ -1,0 +1,105 @@
+﻿@model BillAdmin.Models.TAdminMgmt
+@{
+    ViewBag.Title = "Login";
+
+    Layout = "~/Views/Shared/_LayoutWitoutNav.cshtml";
+
+}
+<style>
+    body {
+        margin: 0;
+        font-size: .9rem;
+        font-weight: 400;
+        line-height: 1.6;
+        color: #212529;
+        text-align: left;
+        background-color: #f5f8fa;
+    }
+
+    .navbar-laravel {
+        box-shadow: 0 2px 4px rgba(0,0,0,.04);
+    }
+
+    .navbar-brand, .nav-link, .my-form, .login-form {
+        font-family: Raleway, sans-serif;
+    }
+
+    .my-form {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+        .my-form .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+    .login-form {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+        .login-form .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+    .error {
+        color: red;
+    }
+</style>
+
+
+<div class="cotainer">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Login</div>
+                <div class="card-body">
+
+                    @using (Html.BeginForm("LoginForm", "Account", FormMethod.Post))
+                    {
+
+                        <div class="form-group row">
+                            <label for="email_address" class="col-md-4 col-form-label text-md-right">ID</label>
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(m => m.AdminID, new { htmlAttributes = new { @class = "form-control required autofocus", @id = "email_address" } })
+                                @Html.ValidationMessageFor(m => m.AdminID, "", new { @class = "error" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <div class="col-md-6">
+                                @Html.PasswordFor(m => m.AdminPwd, new { htmlAttributes = new { @class = "form-control", @id = "password" } })
+                                @Html.ValidationMessageFor(m => m.AdminPwd, "", new { @class = "error" })
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(m => m.RememberMe) Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-md-6 offset-md-4">
+                                <input type="submit" value="Submit" class="btn btn-light"/>
+                                <a href="@Url.Action("RegisterForm", "Account")" class="btn btn-light">
+                                    Register
+                                </a>
+                            </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+   @if (@ViewBag.Message != null)
+   {
+    <script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message")
+            });
+    </script>
+   }

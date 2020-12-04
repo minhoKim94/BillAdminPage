@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MHKIM_BILL_DBModelStoreContainer" CdmEntityContainer="MHKIM_BILL_DBEntities">
+    <EntitySetMapping Name="TAdminLog">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminLog">
+        <MappingFragment StoreEntitySet="TAdminLog">
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+          <ScalarProperty Name="MenuNo" ColumnName="MenuNo" />
+          <ScalarProperty Name="MenuLink" ColumnName="MenuLink" />
+          <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+          <ScalarProperty Name="LogDesc" ColumnName="LogDesc" />
+          <ScalarProperty Name="LogYMD" ColumnName="LogYMD" />
+          <ScalarProperty Name="IPAddr" ColumnName="IPAddr" />
+          <ScalarProperty Name="LogHash" ColumnName="LogHash" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminLoginFail">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminLoginFail">
+        <MappingFragment StoreEntitySet="TAdminLoginFail">
+          <ScalarProperty Name="TryYMD" ColumnName="TryYMD" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="TryCnt" ColumnName="TryCnt" />
+          <ScalarProperty Name="ResetCnt" ColumnName="ResetCnt" />
+          <ScalarProperty Name="HAdminID" ColumnName="HAdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminLoginFailHist">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminLoginFailHist">
+        <MappingFragment StoreEntitySet="TAdminLoginFailHist">
+          <ScalarProperty Name="TryYMD" ColumnName="TryYMD" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="TryCnt" ColumnName="TryCnt" />
+          <ScalarProperty Name="IPAddr" ColumnName="IPAddr" />
+          <ScalarProperty Name="ErrCode" ColumnName="ErrCode" />
+          <ScalarProperty Name="ErrMsg" ColumnName="ErrMsg" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminMenu">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminMenu">
+        <MappingFragment StoreEntitySet="TAdminMenu">
+          <ScalarProperty Name="MenuNo" ColumnName="MenuNo" />
+          <ScalarProperty Name="MenuGroupNo" ColumnName="MenuGroupNo" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="MenuENName" ColumnName="MenuENName" />
+          <ScalarProperty Name="MenuLink" ColumnName="MenuLink" />
+          <ScalarProperty Name="MenuSort" ColumnName="MenuSort" />
+          <ScalarProperty Name="MenuDesc" ColumnName="MenuDesc" />
+          <ScalarProperty Name="MenuENDesc" ColumnName="MenuENDesc" />
+          <ScalarProperty Name="UseStateCode" ColumnName="UseStateCode" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminMenuGroup">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminMenuGroup">
+        <MappingFragment StoreEntitySet="TAdminMenuGroup">
+          <ScalarProperty Name="MenuGroupNo" ColumnName="MenuGroupNo" />
+          <ScalarProperty Name="MenuGroupName" ColumnName="MenuGroupName" />
+          <ScalarProperty Name="MenuGroupENName" ColumnName="MenuGroupENName" />
+          <ScalarProperty Name="MenuGroupSort" ColumnName="MenuGroupSort" />
+          <ScalarProperty Name="MenuGroupIcon" ColumnName="MenuGroupIcon" />
+          <ScalarProperty Name="UseFlag" ColumnName="UseFlag" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminMenuRole">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminMenuRole">
+        <MappingFragment StoreEntitySet="TAdminMenuRole">
+          <ScalarProperty Name="MenuRoleNo" ColumnName="MenuRoleNo" />
+          <ScalarProperty Name="MenuRoleName" ColumnName="MenuRoleName" />
+          <ScalarProperty Name="UseFlag" ColumnName="UseFlag" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminMenuRoleDtl">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminMenuRoleDtl">
+        <MappingFragment StoreEntitySet="TAdminMenuRoleDtl">
+          <ScalarProperty Name="MenuRoleNo" ColumnName="MenuRoleNo" />
+          <ScalarProperty Name="MenuNo" ColumnName="MenuNo" />
+          <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+          <ScalarProperty Name="CIReadingFlag" ColumnName="CIReadingFlag" />
+          <ScalarProperty Name="DLAvailFlag" ColumnName="DLAvailFlag" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminMgmt">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminMgmt">
+        <MappingFragment StoreEntitySet="TAdminMgmt">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="AdminPwd" ColumnName="AdminPwd" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="MenuRoleNo" ColumnName="MenuRoleNo" />
+          <ScalarProperty Name="Dept" ColumnName="Dept" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="OfficePhoneNo" ColumnName="OfficePhoneNo" />
+          <ScalarProperty Name="MPhoneNo" ColumnName="MPhoneNo" />
+          <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+          <ScalarProperty Name="UseLangTypeCode" ColumnName="UseLangTypeCode" />
+          <ScalarProperty Name="AccessIPChkFlag" ColumnName="AccessIPChkFlag" />
+          <ScalarProperty Name="AccessIP1" ColumnName="AccessIP1" />
+          <ScalarProperty Name="AccessIP2" ColumnName="AccessIP2" />
+          <ScalarProperty Name="AccessIP3" ColumnName="AccessIP3" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+          <ScalarProperty Name="PwdUpdDate" ColumnName="PwdUpdDate" />
+          <ScalarProperty Name="UseFlag" ColumnName="UseFlag" />
+          <ScalarProperty Name="HAdminID" ColumnName="HAdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminPwdHist">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminPwdHist">
+        <MappingFragment StoreEntitySet="TAdminPwdHist">
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="AdminPwd" ColumnName="AdminPwd" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminPwdReset">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminPwdReset">
+        <MappingFragment StoreEntitySet="TAdminPwdReset">
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+          <ScalarProperty Name="IPAddr" ColumnName="IPAddr" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminSession">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminSession">
+        <MappingFragment StoreEntitySet="TAdminSession">
+          <ScalarProperty Name="SessionKey" ColumnName="SessionKey" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="IPAddr" ColumnName="IPAddr" />
+          <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+          <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAdminSessionHist">
+      <EntityTypeMapping TypeName="MHKIM_BILL_DBModel.TAdminSessionHist">
+        <MappingFragment StoreEntitySet="TAdminSessionHist">
+          <ScalarProperty Name="SeqNo" ColumnName="SeqNo" />
+          <ScalarProperty Name="SessionKey" ColumnName="SessionKey" />
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="IPAddr" ColumnName="IPAddr" />
+          <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+          <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+          <ScalarProperty Name="LogOutDate" ColumnName="LogOutDate" />
+          <ScalarProperty Name="LogOutReason" ColumnName="LogOutReason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="UP_ADMIN_INFO_GET_ID" FunctionName="MHKIM_BILL_DBModel.Store.UP_ADMIN_INFO_GET_ID" />
+    <FunctionImportMapping FunctionImportName="LoginModule" FunctionName="MHKIM_BILL_DBModel.Store.UP_ADMIN_INFO_GET_ID" />
+    <FunctionImportMapping FunctionImportName="GetAdminInfo" FunctionName="MHKIM_BILL_DBModel.Store.UP_ADMIN_INFO_GET_ID" />
+    <FunctionImportMapping FunctionImportName="UP_LoginID" FunctionName="MHKIM_BILL_DBModel.Store.UP_ADMIN_INFO_GET_ID" />
+    <FunctionImportMapping FunctionImportName="UP_GET_SEARCH_ADMINUSER_LIST_INFO" FunctionName="MHKIM_BILL_DBModel.Store.UP_GET_SEARCH_ADMINUSER_LIST_INFO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MHKIM_BILL_DBModel.UP_GET_SEARCH_ADMINUSER_LIST_INFO_Result">
+          <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+          <ScalarProperty Name="AdminPwd" ColumnName="AdminPwd" />
+          <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+          <ScalarProperty Name="MenuRoleNo" ColumnName="MenuRoleNo" />
+          <ScalarProperty Name="Dept" ColumnName="Dept" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="OfficePhoneNo" ColumnName="OfficePhoneNo" />
+          <ScalarProperty Name="MPhoneNo" ColumnName="MPhoneNo" />
+          <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+          <ScalarProperty Name="UseLangTypeCode" ColumnName="UseLangTypeCode" />
+          <ScalarProperty Name="AccessIPChkFlag" ColumnName="AccessIPChkFlag" />
+          <ScalarProperty Name="AccessIP1" ColumnName="AccessIP1" />
+          <ScalarProperty Name="AccessIP2" ColumnName="AccessIP2" />
+          <ScalarProperty Name="AccessIP3" ColumnName="AccessIP3" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+          <ScalarProperty Name="PwdUpdDate" ColumnName="PwdUpdDate" />
+          <ScalarProperty Name="UseFlag" ColumnName="UseFlag" />
+          <ScalarProperty Name="HAdminID" ColumnName="HAdminID" />
+          <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+          <ScalarProperty Name="UpdDate" ColumnName="UpdDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

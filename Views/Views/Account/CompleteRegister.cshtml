@@ -1,0 +1,15 @@
+﻿@model BillAdmin.Models.TAdminMgmt
+
+@{
+    ViewBag.Title = "Complete Register";
+    Layout = "~/Views/Shared/_LayoutWitoutNav.cshtml";
+}
+
+
+<div class="regomplete-div">
+    <div class="jumbotron">
+        <h1><b>@HttpContext.Current.User.Identity.Name</b>님 회원 가입 완료!</h1>
+        <br />
+        <p><a class="btn btn-primary btn-lg" href="@Url.Action("LoginForm", "Account")" role="button">Login</a></p>
+    </div>
+</div>

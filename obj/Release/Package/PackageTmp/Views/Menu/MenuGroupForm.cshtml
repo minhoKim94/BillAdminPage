@@ -1,0 +1,262 @@
+﻿@model BillAdmin.Models.TAdminMenuGroup
+@{
+    ViewBag.Title = "MenuGroupForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<script src="~/scripts/jquery-3.5.1.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/scripts/js/menuGroup.js"></script>
+
+<div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">메뉴그룹</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="dataTable_length">
+                                <label>메뉴 그룹 목록</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="dataTable_filter" class="dataTables_filter">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-12" style="width:auto">
+                            <table class="table table-bordered dataTable text-center" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead style="background-color: #3498DB; color: white;">
+                                    @{
+                                        <tr>
+                                            <th>@Html.LabelFor(m => m.MenuGroupNo)</th>
+                                            <th>@Html.LabelFor(m => m.MenuGroupName)</th>
+                                            <th>@Html.LabelFor(m => m.MenuGroupSort)</th>
+                                            <th>@Html.LabelFor(m => m.UseFlag)</th>
+                                            <th>icon_is_empty</th>
+                                            <th>@Html.LabelFor(m => m.MenuGroupIcon)</th>
+                                            <th>@Html.LabelFor(m => m.AdminID)</th>
+                                            <th>@Html.LabelFor(m => m.RegDate)</th>
+                                            <th>@Html.LabelFor(m => m.UpdDate)</th>
+                                            <th colspan="2">작업</th>
+                                        </tr>
+                                    }
+                                </thead>
+
+                                <tbody>
+                                    @using (Html.BeginForm())
+                                    {
+
+                                        foreach (System.Data.DataRow dr in ViewBag.menuGrp.Rows)
+                                        {
+                                            <tr>
+                                                <td>@dr["MenuGroupNo"]</td>
+                                                <td>@dr["MenuGroupName"]</td>
+                                                <td>@dr["MenuGroupSort"]</td>
+                                                <td>@dr["UseFlag"]</td>
+                                                <td><i class="@dr["MenuGroupIcon"]"></i></td>
+                                                <td>@dr["MenuGroupIcon"]</td>
+                                                <td>@dr["AdminID"]</td>
+                                                <td>@dr["RegDate"]</td>
+                                                <td>@dr["UpdDate"]</td>
+                                                <td colspan="2">
+                                                    <a href="#" class="insertBtn btn btn-success btn-xs"data-toggle="modal" data-target="#insertModal">Insert</a>
+                                                    &nbsp;&nbsp;
+                                                    <a class="btn btn-danger btn-xs" href="/Menu/MenuGroupDelete?intMgroupNo=@dr["MenuGroupNo"]" onclick="delchk();"><i class="fa fa-trash-o">Delete</i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+
+
+                            </table>
+
+                            <button id="addToList" class="btn btn-primary">Add</button>
+                            <input id="Create" type="submit" value="Create" class="btn btn-default" onclick="window.location.reload();" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 메뉴 수정 Modal-->
+<div class="modal fade" id="insertModal" tabindex="-1" aria-labelledby="insertModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">메뉴 등록</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="frmDetails">
+
+                    <div class="form-group">
+                        <label for="MenuGroupNo">MenuGroupNo</label>
+                        <input type="text" class="form-control" id="MenuGroupNo" placeholder="MenuGroupNo" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuName">MenuName</label>
+                        <input type="text" class="form-control" id="MenuName" placeholder="MenuName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuENName">MenuENName</label>
+                        <input type="text" class="form-control" id="MenuENName" placeholder="MenuENName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuLink">MenuLink</label>
+                        <input type="text" class="form-control" id="MenuLink" placeholder="MenuLink" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuSort">MenuSort</label>
+                        <input type="text" class="form-control" id="MenuSort" placeholder="MenuSort" />
+                    </div><div class="form-group">
+                        <label for="AdminID">AdminID</label>
+                        <input type="text"class="form-control text-muted" id="AdminID" placeholder="AdminID" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuDesc">MenuDesc</label>
+                        <input type="text" class="form-control" id="MenuDesc" placeholder="MenuDesc" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuENDesc">MenuENDesc</label>
+                        <input type="text" class="form-control" id="MenuENDesc" placeholder="MenuENDesc" />
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnAdd" onclick="return AddMenu();">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".insertBtn").click(function () {
+        var str = ""
+        var tdArr = new Array();
+        var insertBtn = $(this);
+
+        var tr = insertBtn.parent().parent();
+        var td = tr.children();
+
+        var intMenuGroupNo = td.eq(0).text();
+        var strAdminId = td.eq(6).text();
+        console.log(intMenuGroupNo);
+        $("#MenuGroupNo").val(intMenuGroupNo);
+        $("#AdminID").val(strAdminId);
+    });
+
+
+    function AddMenu() {
+        var menuList = {
+            MenuGroupNo: $('#MenuGroupNo').val(),
+            MenuName: $('#MenuName').val(),
+            MenuENName: $('#MenuENName').val(),
+            MenuLink: $('#MenuLink').val(),
+            MenuSort: $('#MenuSort').val(),
+            MenuDesc: $('#MenuDesc').val(),
+            MenuENDesc: $('#MenuENDesc').val(),
+            UseStateCode: $('#UseStateCode').val(),
+            AdminID: $('#AdminID').val(),
+        };
+
+        $.ajax({
+            url: "/Menu/MenuInsert",
+            data: JSON.stringify(menuList),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#insertModal').modal('hide');
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    //--------------------------------------------------------------------------------------
+
+    $('#addToList').click(addData);
+    var counter = 1;
+    function addData() {
+        console.log("add List");
+        $('<tr id="tablerow' + counter + '"><td>' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" id="addMenuGroupName" class="text-box single-line" name="MenuGroupName" value="" required="required" placeholder="메뉴그룹명" />' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" id="addMenuGroupSort" class="text-box single-line" name="MenuGroupSort" value="" required="required" placeholder="순서" />' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" id="addUseFlag" class="text-box single-line" name="UseFlag" value="" required="required" placeholder="사용여부"/>' +
+            '</td>' +
+            '<td>' +
+            '</td>' +
+            '<td>' +
+            '<input type="text" id="addMenuGroupIcon" class="text-box single-line" name="icon_tag_is_empty" value="" required="required" placeholder="아이콘" />' +
+            '</td>' +
+            '<td class="text-muted">' +
+            '</td>' +
+            '<td>' +
+            '</td>' +
+            '<td>' +
+            '</td>' +
+            '<td>' +
+            '<button type="button" class="btn btn-primary" onclick="removeTr(' + counter + ');">Delete</button>' +
+            '</td>' +
+            '</tr>').appendTo('#dataTable');
+        counter++;
+    }
+
+    $("#Create").click(createData);
+    function createData() {
+        $.post("/Menu/MenuGroupInsert",
+        {
+            MenuGroupName: $("#addMenuGroupName").val(),
+            MenuGroupSort: $("#addMenuGroupSort").val(),
+            UseFlag: $("#addUseFlag").val(),
+            MenuGroupIcon: $("#addMenuGroupIcon").val(),
+        }
+        , function (data) {
+            if (data == 'true') {
+               
+            } else {
+                alert("성공");
+            }
+        }, 'text');
+    }
+
+
+
+    function removeTr(index) {
+        if (counter > 1) {
+            $('#tablerow' + index).remove();
+            counter--;
+        }
+        return false;
+    }
+
+    function delchk() {
+        if (confirm("정말 삭제 하시겠습니까?"))
+            return true;
+        else
+            return false;
+    }
+
+
+</script>

@@ -1,0 +1,125 @@
+﻿@model BillAdmin.Models.TAdminMgmt
+
+
+@{
+    ViewBag.Title = "AdminFrm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">관리자/로그인 -> 관리자</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length">
+                            @using (Html.BeginForm("AdminFrm", "Admin", FormMethod.Post))
+                            {
+                                <span>관리자 아이디 :</span> @Html.TextBox("strAdminId")
+                                <input type="submit" value="Search" />
+                            }
+                            <label>entries</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="dataTable_filter" class="dataTables_filter">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable text-center" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead style="background-color: #3498DB; color: white;">
+                                @{
+                                    <tr>
+                                        <th>관리자 아이디</th>
+                                        <th>관리자 명</th>
+                                        <th>관리자 역할 명</th>
+                                        <th>부서</th>
+                                        <th>최종접속시간</th>
+                                        <th>등록 일시</th>
+                                        <th>비밀번호 수정 일시</th>
+                                        <th>사용 여부</th>
+                                        <th colspan="2">작업</th>
+                                    </tr>
+                                }
+                            </thead>
+                            @using (Html.BeginForm())
+                            {
+                                foreach (System.Data.DataRow dr in ViewBag.adminList.Rows)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td>@dr["AdminID"]</td>
+                                            <td>@dr["AdminName"]</td>
+                                            <td>@dr["MenuRoleNo"]</td>
+                                            <td>@dr["Dept"]</td>
+                                            <td>@dr["LastLoginDate"]</td>
+                                            <td>@dr["RegDate"]</td>
+                                            <td>@dr["PwdUpdDate"]</td>
+                                            <td>@dr["UseFlag"]</td>
+                                            <td colspan="2">
+                                                <a class="btn btn-dark" href="/Account/UpdateAdminPwdModal?strAdminId=@dr["AdminID"]" data-toggle="modal" data-target="#modalMainAdminPwdUpdate">Detail</a>
+                                                &nbsp;&nbsp;
+                                                <a class="btn btn-danger" href="/Admin/AdminDelete?strAdminID=@dr["AdminID"]" onclick="delchk();">delete</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal ui-draggable in" id="modalMainAdminPwdUpdate" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">닫기</span></button>
+                <h4 class="modal-title">관리자 비밀번호 변경</h4>
+            </div>
+            <div class="modal-body">
+                <form id="myForm" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">AdminID</label>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right">AdminPwd</label>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-9">
+                            <input type="submit" id="btnSubmit" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="btnModifyAdminPwd" class="btn btn-primary">Save changes</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function delchk() {
+        if (confirm("정말 삭제 하시겠습니까?"))
+            return true;
+        else
+            return false;
+    }
+</script>

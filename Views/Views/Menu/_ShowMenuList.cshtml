@@ -1,0 +1,142 @@
+﻿
+
+<div id="gridposition" style="width: 100%;">
+    @{
+        var grid1 = new WebGrid(source: Model, canPage: true, rowsPerPage: 10, ajaxUpdateContainerId: "gridContent");
+        @grid1.GetHtml(mode: WebGridPagerModes.All,
+     tableStyle: "gridTable",
+     headerStyle: "gridHead",
+     footerStyle: "gridFooter",
+     rowStyle: "gridRow",
+     alternatingRowStyle: "gridAltRow",
+     htmlAttributes: new { id = "positionGrid" },
+     fillEmptyRows: false,
+     columns: grid1.Columns(
+     grid1.Column(header: "MenuNo", format:@<span class="menuTablelabel" id="@item.MenuNo" data-value="@item.MenuNo">@item.MenuNo</span>),
+     grid1.Column("MenuName", header: "MenuName"),
+     grid1.Column("MenuENName", header: "MenuENName"),
+     grid1.Column("MenuLink", header: "MenuLink"),
+     grid1.Column("MenuSort", header: "MenuSort"),
+     grid1.Column("AdminID", header: "AdminID"),
+     grid1.Column("RegDate", header: "RegDate "),
+     grid1.Column("UpdDate", header: "UpdDate"),
+     grid1.Column("Action", format: @<text>
+        <a href="#" class="editBtn btn btn-success btn-xs" data-toggle="modal" data-target="#UpdMenuModal" onclick="clearTextBox();">Edit</a>    
+        <a class="btn btn-danger btn-xs" href="/Menu/MenuDelete?intMenuNo=@item.MenuNo" onclick="DeleteMenu();"><i class="fa fa-trash-o">Delete</i></a>
+        
+
+        </text>, style: "col3Width", canSort: false)
+     ))
+    }
+
+</div>
+<div class="modal fade" id="UpdMenuModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="MenuNo">MenuNo</label>
+                        <input type="text" class="form-control text-muted" id="MenuNo" placeholder="MenuNo" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuName">MenuName</label>
+                        <input type="text" class="form-control" id="MenuName" placeholder="MenuName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuENName">MenuENName</label>
+                        <input type="text" class="form-control" id="MenuENName" placeholder="MenuENName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuLink">MenuLink</label>
+                        <input type="text" class="form-control" id="MenuLink" placeholder="MenuLink" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuDesc">MenuDesc</label>
+                        <input type="text" class="form-control" id="MenuDesc" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuENDesc">MenuENDesc</label>
+                        <input type="text" class="form-control" id="MenuENDesc" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnMenuUpdate" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>  
+
+<script>
+    $(".editBtn").click(function () {
+        var str = ""
+        var tdArr = new Array();
+        var editBtn = $(this);
+
+        var tr = editBtn.parent().parent();
+        var td = tr.children();
+
+        var intMenuNo = td.eq(0).text();
+        var strMenuName = td.eq(1).text();
+        var strMenuENName = td.eq(2).text();
+        var strMenuLink = td.eq(3).text();
+        
+        console.log("클릭한 ROW의 모든 데이터 : " + tr.text());
+        
+        console.log(intMenuNo);
+        $("#MenuNo").val(intMenuNo);
+        $("#MenuName").val(strMenuName);
+        $("#MenuENName").val(strMenuENName);
+        $("#MenuLink").val(strMenuLink);
+    });
+
+    function Update() {
+        var menuList = {
+            MenuNo: $('#MenuNo').val(),
+            MenuName: $('#MenuName').val(),
+            MenuENName: $('#MenuENName').val(),
+            MenuLink: $('#MenuLink').val(),
+            MenuDesc: $('#MenuDesc').val(),
+            UseStateCode: $('#UseStateCode').val(),
+            MenuENDesc: $('#MenuENDesc').val(),
+        };
+        $.ajax({
+            url: "/Menu/MenuUpdate",
+            data: JSON.stringify(menuList),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                alert("success");
+                location.reload();
+                $('#UpdMenuModal').modal('hide');
+                $('#MenuName').val("");
+                $('#MenuENName').val("");
+                $('#MenuLink').val("");
+                $('#UseStateCode').val("");
+                $('#MenuDesc').val("");
+                $('#MenuENDesc').val("");
+                
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function DeleteMenu() {
+        var ans = confirm("Are you sure you want to delete this Record?");
+        if (ans == true) {
+            document.form.submit();
+            alert("삭제 성공");
+        }else{
+            alert("삭제 취소")
+        }
+    }
+</script>

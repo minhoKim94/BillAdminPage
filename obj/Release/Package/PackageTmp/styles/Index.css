@@ -1,0 +1,54 @@
+﻿
+
+ul{
+    list-style : none;
+}
+#menuGroupTable{
+    width:auto;
+}
+#menuGroupTable tale{
+    width:auto;
+}
+.sidenav {
+  width: auto;
+  background: #eee;
+  overflow-x: hidden;
+  padding: 8px 0;
+  
+}
+
+.sidenav ul{
+    list-style : none;
+    width : auto;
+}
+
+.sidenav ul li{
+    margin : 2px;
+}
+.sidenav collapse{
+    
+}
+.sidenav #menuColumn > ul > li:nth-child(1) > a{
+    padding : 0;
+}
+.sidenav a {
+  font-size: initial;
+  padding: 15px 8px 15px 10%;
+  text-decoration: none;
+  color: #2196F3;
+  display: block;
+}
+.sidenav a:link {
+    text-decoration-style : none;    
+}
+.sidenav a:hover {
+  color: #064579;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+

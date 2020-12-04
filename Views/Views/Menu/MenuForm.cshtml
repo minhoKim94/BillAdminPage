@@ -1,0 +1,231 @@
+﻿@model BillAdmin.Models.TAdminMenu
+
+@{
+    ViewBag.Title = "MenuForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<script src="~/scripts/jquery-3.5.0.min.js"></script>
+<script src="~/scripts/jquery.validate.min.js"></script>
+<script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
+<style>
+    .gridTable {
+        margin: 5px;
+        padding: 10px;
+        border: 1px #c8c8c8 solid;
+        border-collapse: collapse;
+        min-width: 550px;
+        background-color: #fff;
+        color: #fff;
+        width: 100%;
+    }
+
+    .gridHead th {
+        font-weight: bold;
+        background-color: #3498DB;
+        color: #fff;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .gridHead a:link, .gridHead a:visited, .gridHead a:active, .gridHead a:hover {
+        color: #fff;
+    }
+
+    .gridHead a:hover {
+        text-decoration: underline;
+    }
+
+    .gridTable tr.gridAltRow {
+        background-color: #efeeef;
+    }
+
+    .gridTable tr:hover {
+        background-color: #f6f70a;
+    }
+
+    .gridAltRow td {
+        padding: 10px;
+        margin: 5px;
+        color: #333;
+        text-align: left;
+    }
+
+    .gridRow td {
+        padding: 10px;
+        color: #333;
+        text-align: left;
+    }
+
+    .gridFooter td {
+        padding: 10px;
+        color: #ffffff;
+        font-size: 12pt;
+        text-align: center;
+        background-color: #3498DB;
+    }
+
+    .gridFooter a {
+        font-weight: bold;
+        color: blue;
+        cursor: pointer;
+    }
+</style>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">메뉴/권한 <i class="fas fa-arrow-circle-right"></i>메뉴</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="dataTable_length">
+                            <label>메뉴 그룹명 : @Html.DropDownList("lstManagerMenu", Model.MenuGroupList)</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="dataTable_filter" class="dataTables_filter">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered dataTable" id="dataTable" style="display:none;" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                            <thead>
+
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div id="MenuListGrid">
+                                            @Html.Partial("_ShowMenuList", Model.AdminMenuGrid)
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <button type="button" class="AddMenuListBtn btn btn-primary" style="display:none;" data-toggle="modal" data-target="#AddMenuModal">Add New Employee</button>
+    </div>
+</div>
+
+
+<div class="modal fade" id="AddMenuModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Employee</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="MenuGroupNo">메뉴 그룹 명</label>
+                        <input type="text" class="form-control" id="addMenuGroupNo" placeholder="MenuGroupNo" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuName">메뉴 명</label>
+                        <input type="text" class="form-control" id="addMenuName" placeholder="MenuName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuENName">메뉴 영어 명</label>
+                        <input type="text" class="form-control" id="addMenuENName" placeholder="MenuENName" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuLink">메뉴 Link</label>
+                        <input type="text" class="form-control" id="addMenuLink" placeholder="MenuLink" />
+                    </div>
+                    <div class="form-group">
+                        <label for="UseStateCode">상태</label>
+                        @Html.EditorFor(model => model.UseStateCode, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuDesc">메뉴 설명</label>
+                        <input type="text" class="form-control" id="addMenuDesc" placeholder="MenuDesc" />
+                    </div>
+                    <div class="form-group">
+                        <label for="MenuENDesc">메뉴 영어 설명</label>
+                        <input type="text" class="form-control" id="addMenuENDesc" placeholder="MenuENDesc" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return AddMenuList();">Add</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#lstManagerMenu").append($("<option></option>").val("0").html("-- Select List --"));
+        $("#lstManagerMenu").val("0");
+    });
+
+    $('#lstManagerMenu').change(function (e) {
+        $("#dataTable").show();
+        $('.AddMenuListBtn').show();
+
+        e.preventDefault();
+        var url = '@Url.Action("MenuFilter", "Menu")';
+        $.get(url, { intMenuGroupNo: $(this).val() }, function (result) {
+            $('#MenuListGrid').html(result);
+        });
+    });
+
+    // MenuGroupName 가져오기
+    $(".AddMenuListBtn").click(function () {
+        var str = ""
+        var e = document.getElementById("lstManagerMenu");
+        var strMenuGroupName = e.options[e.selectedIndex].text;
+        var intMenuGroupNo = $('#lstManagerMenu').val();
+
+        console.log(intMenuGroupNo, strMenuGroupName);
+        
+
+        $("#addMenuGroupNo").text(intMenuGroupNo);
+        $("#addMenuGroupNo").val(strMenuGroupName);
+
+    });
+
+    // Menu Insert
+    function AddMenuList() {
+
+        var menuInsertList = {
+            MenuGroupNo: $('#addMenuGroupNo').text(),
+            MenuName: $('#addMenuName').val(),
+            MenuENName: $('#addMenuENName').val(),
+            MenuLink: $('#addMenuLink').val(),
+            UseStateCode: $('#UseStateCode').val(),
+            MenuDesc: $('#addMenuDesc').val(),
+            MenuENDesc: $('#addMenuENDesc').val(),
+        };
+        console.log(menuInsertList);
+        $.ajax({
+            url: "/Menu/MenuInsert",
+            data: JSON.stringify(menuInsertList),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                alert("success");
+                $('#AddMenuModal').modal('hide');
+                location.reload();
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+    // End Menu Insert
+
+</script>
